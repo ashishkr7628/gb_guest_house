@@ -3,119 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Vista Hotel</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>G.B Guest House - Luxury Redefined</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            scroll-behavior: smooth;
         }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .navbar a {
+            color: #374151;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-color);
+        }
+        
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar a:hover::after {
+            width: 100%;
+        }
+        
         .hero-section {
-            background: url('https://source.unsplash.com/random/1920x600/?hotel') no-repeat center center/cover;
-            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('IMG-20250525-WA0004.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 100vh;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
         }
-        .hero-overlay {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            padding: 2rem;
-            border-radius: 10px;
+        
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
         }
-        .navbar {
-            background-color: #1a202c;
-            padding: 1rem;
-        }
-        .navbar a {
-            color: white;
-            margin: 0 1rem;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .navbar a:hover {
-            color: #f6ad55;
-        }
+        
         .section {
-            padding: 4rem 2rem;
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         .card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
         }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
         .btn {
-            background-color: #f6ad55;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 5px;
+            border-radius: 50px;
             text-decoration: none;
             display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
+        
         .btn:hover {
-            background-color: #ed8936;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
         }
-        .virtual-tour img {
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .carousel-container {
+            position: relative;
             width: 100%;
-            border-radius: 10px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 1rem;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        /* 360° Panorama Styles */
+        .panorama-container {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .panorama-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
         @media (max-width: 768px) {
             .hero-section {
-                height: 400px;
+                height: 70vh;
             }
-            .navbar a {
-                display: block;
-                margin: 0.5rem 0;
+            .carousel-item img {
+                height: 300px;
+            }
+            .panorama-container {
+                height: 300px;
             }
         }
     </style>
 </head>
-<body>
-    <header class="navbar">
-        <nav class="container mx-auto flex flex-wrap justify-center">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#rooms">Rooms</a>
-            <a href="#amenities">Amenities</a>
-            <a href="#virtual-tour">Virtual Tour</a>
-            <a href="#attractions">Attractions</a>
-            <a href="#booking">Book Now</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">G.B Guest House</div>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#home" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+                <a href="#rooms" class="text-gray-700 hover:text-blue-600">Rooms</a>
+                <a href="#amenities" class="text-gray-700 hover:text-blue-600">Amenities</a>
+                <a href="#virtual-tour" class="text-gray-700 hover:text-blue-600">Virtual Tour</a>
+                <a href="#attractions" class="text-gray-700 hover:text-blue-600">Attractions</a>
+                <a href="#book-now" class="text-gray-700 hover:text-blue-600">Book Now</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+                <a href="#rooms" class="text-gray-700 hover:text-blue-600">Rooms</a>
+                <a href="#amenities" class="text-gray-700 hover:text-blue-600">Amenities</a>
+                <a href="#virtual-tour" class="text-gray-700 hover:text-blue-600">Virtual Tour</a>
+                <a href="#attractions" class="text-gray-700 hover:text-blue-600">Attractions</a>
+                <a href="#book-now" class="text-gray-700 hover:text-blue-600">Book Now</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <div class="hero-overlay">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Experience Luxury Redefined</h1>
-            <p class="text-lg md:text-xl mb-6">Discover the perfect blend of elegance, comfort, and world-class hospitality at Grand Vista Hotel</p>
-            <a href="#booking" class="btn mr-4">Book Your Stay</a>
-            <a href="#virtual-tour" class="btn">Virtual Tour</a>
+        <div class="hero-content">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Experience Luxury Redefined</h1>
+                <p class="text-lg md:text-xl mb-6">Discover the perfect blend of elegance, comfort, and world-class hospitality at G.B Guest House</p>
+                <a href="#book-now" class="btn mr-4 pulse">Book Your Stay</a>
+                <a href="#virtual-tour" class="btn btn-outline">Virtual Tour</a>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="section bg-gray-100">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center">About Grand Vista Hotel</h2>
-            <p class="text-lg text-center mb-8">Located in the heart of a picturesque landscape, Grand Vista Hotel offers unparalleled luxury and service. Our commitment to excellence ensures every guest experiences the finest in hospitality.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card">
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">About G.B Guest House</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Located in the heart of a picturesque landscape, G.B Guest House offers unparalleled luxury and service. Our commitment to excellence ensures every guest experiences the finest in hospitality.</p>
+            
+            <div class="carousel-container mb-12">
+                <div class="carousel">
+                    <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipNwOqVxPSf7SQCS2Cb8XM0bshfo5zOhz23NLnkB=w900-h727-p-k-no?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby">
+                        <div class="carousel-caption">
+                            <h3 class="text-2xl font-bold">Grand Lobby</h3>
+                            <p>Experience our stunning lobby with breathtaking architecture</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipP_Fv6DwCX0SceYzl-wyLhylrebwtbQK0Nq0TuR=w900-h975-p-k-no?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Pool">
+                        <div class="carousel-caption">
+                            <h3 class="text-2xl font-bold">Infinity Pool</h3>
+                            <p>Relax in our stunning infinity pool with panoramic views</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipOER64kbgwSb2zcix1yPfwXhIVBt9bH-CN9Q4lT=w900-h975-p-k-no?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Restaurant">
+                        <div class="carousel-caption">
+                            <h3 class="text-2xl font-bold">Fine Dining</h3>
+                            <p>Indulge in culinary excellence at our award-winning restaurant</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" data-index="0"></span>
+                    <span class="carousel-dot" data-index="1"></span>
+                    <span class="carousel-dot" data-index="2"></span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card text-center">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
                     <h3 class="text-xl font-semibold mb-2">Prime Location</h3>
                     <p>Situated in the scenic countryside with breathtaking panoramic views of rolling hills and valleys. Just 30 minutes from the city center and major attractions.</p>
                 </div>
-                <div class="card">
+                <div class="card text-center">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
                     <h3 class="text-xl font-semibold mb-2">Premium Services</h3>
                     <p>24/7 concierge service, valet parking, airport transfers, spa treatments, and personalized guest experiences tailored to your preferences.</p>
                 </div>
-                <div class="card">
+                <div class="card text-center">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
                     <h3 class="text-xl font-semibold mb-2">Fine Dining</h3>
                     <p>Award-winning restaurant featuring international cuisine, rooftop bar with panoramic views, and in-room dining available 24 hours a day.</p>
                 </div>
-                <div class="card">
+                <div class="card text-center">
+                    <div class="text-4xl text-blue-600 mb-4">
+                        <i class="fas fa-spa"></i>
+                    </div>
                     <h3 class="text-xl font-semibold mb-2">Wellness & Recreation</h3>
                     <p>State-of-the-art fitness center, outdoor infinity pool, full-service spa, tennis court, and guided nature walks through scenic trails.</p>
                 </div>
@@ -123,79 +416,82 @@
         </div>
     </section>
 
-    <section id="rooms" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center">Luxurious Accommodations</h2>
-            <p class="text-lg text-center mb-8">Choose from our carefully designed rooms and suites, each offering comfort, elegance, and modern amenities for an unforgettable stay.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Rooms Section -->
+    <section id="rooms" class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Luxurious Accommodations</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Choose from our carefully designed rooms and suites, each offering comfort, elegance, and modern amenities for an unforgettable stay.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?suite" alt="Deluxe Suite" class="mb-4 rounded">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipOTH8O5Soc-vI8hh3HyjBdtDM9oRZRpa19ySJDj=w900-h975-p-k-no?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deluxe Suite" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Deluxe Suite</h3>
-                    <p>Spacious suite with panoramic valley views, perfect for couples and business travelers.</p>
-                    <ul class="list-disc pl-5 mb-4">
+                    <p class="mb-4">Spacious suite with panoramic valley views, perfect for couples and business travelers.</p>
+                    <ul class="list-disc list-inside mb-4">
                         <li>King Size Bed</li>
                         <li>Marble Bathroom</li>
                         <li>Free High-Speed WiFi</li>
                         <li>55" Smart TV</li>
                         <li>Coffee Machine</li>
                     </ul>
-                    <p class="font-bold mb-4">$299/night</p>
-                    <a href="#booking" class="btn">Reserve Now</a>
+                    <p class="text-lg font-bold mb-4">$299/night</p>
+                    <a href="#book-now" class="btn">Reserve Now</a>
                 </div>
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?villa" alt="Premium Villa" class="mb-4 rounded">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipPqdPtnoWVT6ykCEidvREab_l5rYrctYq-ORJMr=w900-h975-p-k-no?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Villa" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Premium Villa</h3>
-                    <p>Private villa with terrace, perfect for families and extended stays with ultimate privacy.</p>
-                    <ul class="list-disc pl-5 mb-4">
+                    <p class="mb-4">Private villa with terrace, perfect for families and extended stays with ultimate privacy.</p>
+                    <ul class="list-disc list-inside mb-4">
                         <li>Two Bedrooms</li>
                         <li>Private Jacuzzi</li>
                         <li>Private Terrace</li>
                         <li>Kitchenette</li>
                         <li>Butler Service</li>
                     </ul>
-                    <p class="font-bold mb-4">$599/night</p>
-                    <a href="#booking" class="btn">Reserve Now</a>
+                    <p class="text-lg font-bold mb-4">$599/night</p>
+                    <a href="#book-now" class="btn">Reserve Now</a>
                 </div>
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?room" alt="Standard Room" class="mb-4 rounded">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipNh99yWxlPbF1Fvg5D0hyXWXJzC3RiRAt28aJ1q=w203-h152-k-no" alt="Standard Room" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Standard Room</h3>
-                    <p>Comfortable and elegant room with all essential amenities for a pleasant stay.</p>
-                    <ul class="list-disc pl-5 mb-4">
+                    <p class="mb-4">Comfortable and elegant room with all essential amenities for a pleasant stay.</p>
+                    <ul class="list-disc list-inside mb-4">
                         <li>Queen Size Bed</li>
                         <li>Modern Shower</li>
                         <li>Free WiFi</li>
                         <li>42" Smart TV</li>
                         <li>Free Parking</li>
                     </ul>
-                    <p class="font-bold mb-4">$179/night</p>
-                    <a href="#booking" class="btn">Reserve Now</a>
+                    <p class="text-lg font-bold mb-4">$179/night</p>
+                    <a href="#book-now" class="btn">Reserve Now</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="amenities" class="section bg-gray-100">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center">World-Class Amenities</h2>
-            <p class="text-lg text-center mb-8">Enjoy exceptional facilities and services designed to make your stay memorable and comfortable.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?pool" alt="Infinity Pool" class="mb-4 rounded">
+    <!-- Amenities Section -->
+    <section id="amenities" class="section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">World-Class Amenities</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Enjoy exceptional facilities and services designed to make your stay memorable and comfortable.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card text-center">
+                    <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Infinity Pool" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Infinity Pool</h3>
                     <p>Stunning infinity pool overlooking the valley with poolside service and comfortable lounging areas.</p>
                 </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?spa" alt="Luxury Spa" class="mb-4 rounded">
+                <div class="card text-center">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Spa" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Luxury Spa</h3>
                     <p>Full-service spa offering massage therapy, facial treatments, and wellness programs for complete relaxation.</p>
                 </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?parking" alt="Valet Parking" class="mb-4 rounded">
+                <div class="card text-center">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Valet Parking" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Valet Parking</h3>
                     <p>Complimentary valet parking service and luxury car rental options for exploring the local area.</p>
                 </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?office" alt="Business Center" class="mb-4 rounded">
+                <div class="card text-center">
+                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Center" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Business Center</h3>
                     <p>Modern business facilities with meeting rooms, high-speed internet, and professional support services.</p>
                 </div>
@@ -203,13 +499,14 @@
         </div>
     </section>
 
-    <section id="virtual-tour" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center">Immersive Virtual Experience</h2>
-            <p class="text-lg text-center mb-8">Take a 360-degree virtual tour of our hotel and explore our beautiful spaces from the comfort of your home.</p>
+    <!-- Virtual Tour Section -->
+    <section id="virtual-tour" class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Immersive Virtual Experience</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Take a 360-degree virtual tour of our hotel and explore our beautiful spaces from the comfort of your home.</p>
             <div class="flex flex-col items-center">
-                <div id="panorama" style="width:100%;max-width:900px;height:500px;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.08);"></div>
-                <div class="flex gap-4 mt-6">
+                <div id="panorama" class="panorama-container"></div>
+                <div class="panorama-controls">
                     <button class="btn" onclick="loadTour('IMG-20250929-WA0013.jpg', 'Deluxe Suite')">Deluxe Suite</button>
                     <button class="btn" onclick="loadTour('IMG-20250929-WA0011.jpg', 'Hotel Lobby')">Hotel Lobby</button>
                     <button class="btn" onclick="loadTour('IMG-20250929-WA0005.jpg', 'Scenic Views')">Scenic Views</button>
@@ -218,58 +515,60 @@
         </div>
     </section>
 
-    <section id="attractions" class="section bg-gray-100">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center">Nearby Attractions</h2>
-            <p class="text-lg text-center mb-8">Discover the beauty and culture of our surroundings with these must-visit destinations and activities.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Attractions Section -->
+    <section id="attractions" class="section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Nearby Attractions</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Discover the beauty and culture of our surroundings with these must-visit destinations and activities.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?village" alt="Historic Village Center" class="mb-4 rounded">
+                    <img src="https://images.unsplash.com/photo-1590077428593-a55bb07c4665?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Historic Village Center" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Historic Village Center</h3>
                     <p>Explore charming cobblestone streets, traditional architecture, and local artisan shops in the nearby historic village center, just 15 minutes away.</p>
-                    <p class="text-sm">Distance: 8 km | Duration: 15 minutes</p>
+                    <p class="mt-2 text-sm"><strong>Distance:</strong> 8 km | <strong>Duration:</strong> 15 minutes</p>
                 </div>
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?nature" alt="Nature Reserve & Hiking Trails" class="mb-4 rounded">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nature Reserve & Hiking Trails" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Nature Reserve & Hiking Trails</h3>
                     <p>Discover pristine hiking trails through protected woodlands with guided tours, bird watching, and panoramic viewpoints of the valley.</p>
-                    <p class="text-sm">Distance: 5 km | Duration: 10 minutes</p>
+                    <p class="mt-2 text-sm"><strong>Distance:</strong> 5 km | <strong>Duration:</strong> 10 minutes</p>
                 </div>
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?vineyard" alt="Local Winery & Vineyards" class="mb-4 rounded">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Local Winery & Vineyards" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Local Winery & Vineyards</h3>
                     <p>Experience wine tasting sessions at award-winning local vineyards, featuring tours of the cellars and traditional wine-making processes.</p>
-                    <p class="text-sm">Distance: 12 km | Duration: 20 minutes</p>
+                    <p class="mt-2 text-sm"><strong>Distance:</strong> 12 km | <strong>Duration:</strong> 20 minutes</p>
                 </div>
                 <div class="card">
-                    <img src="https://source.unsplash.com/random/400x300/?adventure" alt="Adventure Sports Center" class="mb-4 rounded">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adventure Sports Center" class="w-full h-48 object-cover mb-4 rounded-lg">
                     <h3 class="text-xl font-semibold mb-2">Adventure Sports Center</h3>
                     <p>Thrilling activities including zip-lining, rock climbing, mountain biking, and paragliding with professional instructors and safety equipment.</p>
-                    <p class="text-sm">Distance: 18 km | Duration: 25 minutes</p>
+                    <p class="mt-2 text-sm"><strong>Distance:</strong> 18 km | <strong>Duration:</strong> 25 minutes</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="booking" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-center">Reserve Your Stay</h2>
-            <p class="text-lg text-center mb-8">Book directly with us for the best rates and exclusive perks. Our team is ready to make your stay unforgettable.</p>
-            <div class="card max-w-lg mx-auto">
+    <!-- Booking Section -->
+    <section id="book-now" class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Reserve Your Stay</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Book directly with us for the best rates and exclusive perks. Our team is ready to make your stay unforgettable.</p>
+            <div class="max-w-lg mx-auto card">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="check-in" class="block mb-1">Check-in Date</label>
-                        <input type="date" id="check-in" class="w-full p-2 border rounded">
+                        <label class="block text-sm font-medium mb-2">Check-in Date</label>
+                        <input type="date" class="w-full border rounded p-2">
                     </div>
                     <div>
-                        <label for="check-out" class="block mb-1">Check-out Date</label>
-                        <input type="date" id="check-out" class="w-full p-2 border rounded">
+                        <label class="block text-sm font-medium mb-2">Check-out Date</label>
+                        <input type="date" class="w-full border rounded p-2">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="guests" class="block mb-1">Number of Guests</label>
-                        <select id="guests" class="w-full p-2 border rounded">
+                        <label class="block text-sm font-medium mb-2">Number of Guests</label>
+                        <select class="w-full border rounded p-2">
                             <option>1 Guest</option>
                             <option>2 Guests</option>
                             <option>3 Guests</option>
@@ -278,8 +577,8 @@
                         </select>
                     </div>
                     <div>
-                        <label for="room-type" class="block mb-1">Room Type</label>
-                        <select id="room-type" class="w-full p-2 border rounded">
+                        <label class="block text-sm font-medium mb-2">Room Type</label>
+                        <select class="w-full border rounded p-2">
                             <option>Standard Room - $179/night</option>
                             <option>Deluxe Suite - $299/night</option>
                             <option>Premium Villa - $599/night</option>
@@ -287,8 +586,8 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="package" class="block mb-1">Special Package</label>
-                    <select id="package" class="w-full p-2 border rounded">
+                    <label class="block text-sm font-medium mb-2">Special Package</label>
+                    <select class="w-full border rounded p-2">
                         <option>No package</option>
                         <option>Romantic Getaway (+$150)</option>
                         <option>Spa Retreat (+$200)</option>
@@ -297,65 +596,184 @@
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="promo" class="block mb-1">Promo Code</label>
-                    <input type="text" id="promo" class="w-full p-2 border rounded" placeholder="Enter promo code">
+                    <label class="block text-sm font-medium mb-2">Promo Code</label>
+                    <input type="text" class="w-full border rounded p-2">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="name" class="block mb-1">Full Name</label>
-                        <input type="text" id="name" class="w-full p-2 border rounded" placeholder="Enter your name">
+                        <label class="block text-sm font-medium mb-2">Full Name</label>
+                        <input type="text" class="w-full border rounded p-2">
                     </div>
                     <div>
-                        <label for="email" class="block mb-1">Email Address</label>
-                        <input type="email" id="email" class="w-full p-2 border rounded" placeholder="Enter your email">
+                        <label class="block text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" class="w-full border rounded p-2">
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="phone" class="block mb-1">Phone Number</label>
-                    <input type="tel" id="phone" class="w-full p-2 border rounded" placeholder="Enter your phone number">
+                    <label class="block text-sm font-medium mb-2">Phone Number</label>
+                    <input type="tel" class="w-full border rounded p-2">
                 </div>
-                <div class="card mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Booking Summary</h3>
-                    <p id="summary">Please fill out the form to see your booking summary.</p>
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold mb-2">Booking Summary</h3>
+                    <p>Please fill out the form to see your booking summary.</p>
                 </div>
-                <button onclick="calculateSummary()" class="btn w-full">Complete Reservation</button>
+                <button class="btn w-full">Complete Reservation</button>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="section bg-gray-900 text-white">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-                <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                <p>123 Scenic Valley Road, Moldova</p>
-                <p>+373 22 123 456</p>
-                <p>info@grandvistahotel.com</p>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-                <ul class="list-none">
-                    <li><a href="#rooms" class="text-gray-300 hover:text-white">Accommodations</a></li>
-                    <li><a href="#amenities" class="text-gray-300 hover:text-white">Amenities</a></li>
-                    <li><a href="#attractions" class="text-gray-300 hover:text-white">Local Attractions</a></li>
-                    <li><a href="#booking" class="text-gray-300 hover:text-white">Reservations</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-300 hover:text-white">Facebook</a>
-                    <a href="#" class="text-gray-300 hover:text-white">Twitter</a>
-                    <a href="#" class="text-gray-300 hover:text-white">Instagram</a>
-                    <a href="#" class="text-gray-300 hover:text-white">LinkedIn</a>
-                </div>
+    <!-- Map Location Section -->
+    <section id="location" class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Our Location</h2>
+            <p class="text-center mb-8 max-w-2xl mx-auto">Find us on the map below. G.B Guest House is conveniently located for easy access to local attractions and amenities.</p>
+            <div class="flex justify-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29471.79202895286!2d86.4718086!3d22.5800756!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1df786c2ceea85%3A0x11e8e14cc4a89e08!2sG.B%20Guest%20House!5e0!3m2!1sen!2sin!4v1759171620925!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-        <div class="text-center mt-8">
-            <p>© 2025 Grand Vista Hotel. All rights reserved.</p>
+    </section>
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i>123 Scenic Valley Road, Moldova</p>
+                    <p><i class="fas fa-phone mr-2"></i>+373 22 123 456</p>
+                    <p><i class="fas fa-envelope mr-2"></i>info@grandvistahotel.com</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#rooms" class="hover:text-blue-400"><i class="fas fa-chevron-right mr-2"></i>Accommodations</a></li>
+                        <li><a href="#amenities" class="hover:text-blue-400"><i class="fas fa-chevron-right mr-2"></i>Amenities</a></li>
+                        <li><a href="#attractions" class="hover:text-blue-400"><i class="fas fa-chevron-right mr-2"></i>Local Attractions</a></li>
+                        <li><a href="#book-now" class="hover:text-blue-400"><i class="fas fa-chevron-right mr-2"></i>Reservations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-400 text-2xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-blue-400 text-2xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-blue-400 text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-blue-400 text-2xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <p>© 2025 G.B Guest House. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousels = document.querySelectorAll('.carousel-container');
+            
+            carousels.forEach(carouselContainer => {
+                const carousel = carouselContainer.querySelector('.carousel');
+                const items = carousel.querySelectorAll('.carousel-item');
+                const prevBtn = carouselContainer.querySelector('.prev-btn');
+                const nextBtn = carouselContainer.querySelector('.next-btn');
+                const dots = carouselContainer.querySelectorAll('.carousel-dot');
+                
+                let currentIndex = 0;
+                const totalItems = items.length;
+                
+                function updateCarousel() {
+                    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    
+                    // Update dots
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+                
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalItems;
+                    updateCarousel();
+                }
+                
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                    updateCarousel();
+                }
+                
+                // Auto-advance carousel
+                let carouselInterval = setInterval(nextSlide, 5000);
+                
+                // Event listeners
+                nextBtn.addEventListener('click', () => {
+                    clearInterval(carouselInterval);
+                    nextSlide();
+                    carouselInterval = setInterval(nextSlide, 5000);
+                });
+                
+                prevBtn.addEventListener('click', () => {
+                    clearInterval(carouselInterval);
+                    prevSlide();
+                    carouselInterval = setInterval(nextSlide, 5000);
+                });
+                
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        clearInterval(carouselInterval);
+                        currentIndex = parseInt(dot.getAttribute('data-index'));
+                        updateCarousel();
+                        carouselInterval = setInterval(nextSlide, 5000);
+                    });
+                });
+                
+                // Pause on hover
+                carouselContainer.addEventListener('mouseenter', () => {
+                    clearInterval(carouselInterval);
+                });
+                
+                carouselContainer.addEventListener('mouseleave', () => {
+                    carouselInterval = setInterval(nextSlide, 5000);
+                });
+            });
+            
+            // Scroll animations
+            const sections = document.querySelectorAll('.section');
+            
+            function checkVisibility() {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight * 0.85) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                checkVisibility();
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Initial check for elements in view
+            checkVisibility();
+        });
+
         // Pannellum 360° Virtual Tour
         let viewer;
         function initializePanorama() {
@@ -365,7 +783,7 @@
                 "autoLoad": true,
                 "autoRotate": -2,
                 "title": "Deluxe Suite - Virtual Tour",
-                "author": "Grand Vista Hotel",
+                "author": "G.B Guest House",
                 "showControls": true,
                 "hfov": 110,
                 "compass": false,
@@ -384,7 +802,7 @@
                 "autoLoad": true,
                 "autoRotate": -2,
                 "title": title + " - Virtual Tour",
-                "author": "Grand Vista Hotel",
+                "author": "G.B Guest House",
                 "showControls": true,
                 "hfov": 110,
                 "compass": false,
@@ -396,42 +814,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(initializePanorama, 500);
         });
-
-        // Booking summary function (unchanged)
-        function calculateSummary() {
-            const checkIn = document.getElementById('check-in').value;
-            const checkOut = document.getElementById('check-out').value;
-            const guests = document.getElementById('guests').value;
-            const roomType = document.getElementById('room-type').value;
-            const package = document.getElementById('package').value;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-
-            let price = 0;
-            if (roomType.includes('Standard Room')) price += 179;
-            else if (roomType.includes('Deluxe Suite')) price += 299;
-            else if (roomType.includes('Premium Villa')) price += 599;
-
-            if (package.includes('Romantic Getaway')) price += 150;
-            else if (package.includes('Spa Retreat')) price += 200;
-            else if (package.includes('Adventure Package')) price += 180;
-            else if (package.includes('Business Traveler')) price += 100;
-
-            const summary = `
-                Name: ${name || 'Not provided'}<br>
-                Email: ${email || 'Not provided'}<br>
-                Phone: ${phone || 'Not provided'}<br>
-                Check-in: ${checkIn || 'Not selected'}<br>
-                Check-out: ${checkOut || 'Not selected'}<br>
-                Guests: ${guests}<br>
-                Room Type: ${roomType}<br>
-                Package: ${package}<br>
-                Total Price per Night: $${price}
-            `;
-            document.getElementById('summary').innerHTML = summary;
-            alert('Booking submitted! Check the summary below.');
-        }
     </script>
     <script src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
-    </script>
+</body>
+</html>
