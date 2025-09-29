@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Vista Hotel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css"/>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero-section {
+            background: url('https://source.unsplash.com/random/1920x600/?hotel') no-repeat center center/cover;
+            height: 600px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .navbar {
+            background-color: #1a202c;
+            padding: 1rem;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            color: #f6ad55;
+        }
+        .section {
+            padding: 4rem 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+            background-color: #f6ad55;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #ed8936;
+        }
+        .virtual-tour img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 400px;
+            }
+            .navbar a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav class="container mx-auto flex flex-wrap justify-center">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#virtual-tour">Virtual Tour</a>
+            <a href="#attractions">Attractions</a>
+            <a href="#booking">Book Now</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-overlay">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Experience Luxury Redefined</h1>
+            <p class="text-lg md:text-xl mb-6">Discover the perfect blend of elegance, comfort, and world-class hospitality at Grand Vista Hotel</p>
+            <a href="#booking" class="btn mr-4">Book Your Stay</a>
+            <a href="#virtual-tour" class="btn">Virtual Tour</a>
+        </div>
+    </section>
+
+    <section id="about" class="section bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">About Grand Vista Hotel</h2>
+            <p class="text-lg text-center mb-8">Located in the heart of a picturesque landscape, Grand Vista Hotel offers unparalleled luxury and service. Our commitment to excellence ensures every guest experiences the finest in hospitality.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-2">Prime Location</h3>
+                    <p>Situated in the scenic countryside with breathtaking panoramic views of rolling hills and valleys. Just 30 minutes from the city center and major attractions.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-2">Premium Services</h3>
+                    <p>24/7 concierge service, valet parking, airport transfers, spa treatments, and personalized guest experiences tailored to your preferences.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-2">Fine Dining</h3>
+                    <p>Award-winning restaurant featuring international cuisine, rooftop bar with panoramic views, and in-room dining available 24 hours a day.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-2">Wellness & Recreation</h3>
+                    <p>State-of-the-art fitness center, outdoor infinity pool, full-service spa, tennis court, and guided nature walks through scenic trails.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rooms" class="section">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">Luxurious Accommodations</h2>
+            <p class="text-lg text-center mb-8">Choose from our carefully designed rooms and suites, each offering comfort, elegance, and modern amenities for an unforgettable stay.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?suite" alt="Deluxe Suite" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Deluxe Suite</h3>
+                    <p>Spacious suite with panoramic valley views, perfect for couples and business travelers.</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>King Size Bed</li>
+                        <li>Marble Bathroom</li>
+                        <li>Free High-Speed WiFi</li>
+                        <li>55" Smart TV</li>
+                        <li>Coffee Machine</li>
+                    </ul>
+                    <p class="font-bold mb-4">$299/night</p>
+                    <a href="#booking" class="btn">Reserve Now</a>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?villa" alt="Premium Villa" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Premium Villa</h3>
+                    <p>Private villa with terrace, perfect for families and extended stays with ultimate privacy.</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Two Bedrooms</li>
+                        <li>Private Jacuzzi</li>
+                        <li>Private Terrace</li>
+                        <li>Kitchenette</li>
+                        <li>Butler Service</li>
+                    </ul>
+                    <p class="font-bold mb-4">$599/night</p>
+                    <a href="#booking" class="btn">Reserve Now</a>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?room" alt="Standard Room" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Standard Room</h3>
+                    <p>Comfortable and elegant room with all essential amenities for a pleasant stay.</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Queen Size Bed</li>
+                        <li>Modern Shower</li>
+                        <li>Free WiFi</li>
+                        <li>42" Smart TV</li>
+                        <li>Free Parking</li>
+                    </ul>
+                    <p class="font-bold mb-4">$179/night</p>
+                    <a href="#booking" class="btn">Reserve Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="amenities" class="section bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">World-Class Amenities</h2>
+            <p class="text-lg text-center mb-8">Enjoy exceptional facilities and services designed to make your stay memorable and comfortable.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?pool" alt="Infinity Pool" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Infinity Pool</h3>
+                    <p>Stunning infinity pool overlooking the valley with poolside service and comfortable lounging areas.</p>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?spa" alt="Luxury Spa" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Luxury Spa</h3>
+                    <p>Full-service spa offering massage therapy, facial treatments, and wellness programs for complete relaxation.</p>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?parking" alt="Valet Parking" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Valet Parking</h3>
+                    <p>Complimentary valet parking service and luxury car rental options for exploring the local area.</p>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?office" alt="Business Center" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Business Center</h3>
+                    <p>Modern business facilities with meeting rooms, high-speed internet, and professional support services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="virtual-tour" class="section">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">Immersive Virtual Experience</h2>
+            <p class="text-lg text-center mb-8">Take a 360-degree virtual tour of our hotel and explore our beautiful spaces from the comfort of your home.</p>
+            <div class="flex flex-col items-center">
+                <div id="panorama" style="width:100%;max-width:900px;height:500px;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.08);"></div>
+                <div class="flex gap-4 mt-6">
+                    <button class="btn" onclick="loadTour('IMG-20250929-WA0013.jpg', 'Deluxe Suite')">Deluxe Suite</button>
+                    <button class="btn" onclick="loadTour('IMG-20250929-WA0011.jpg', 'Hotel Lobby')">Hotel Lobby</button>
+                    <button class="btn" onclick="loadTour('IMG-20250929-WA0005.jpg', 'Scenic Views')">Scenic Views</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="attractions" class="section bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">Nearby Attractions</h2>
+            <p class="text-lg text-center mb-8">Discover the beauty and culture of our surroundings with these must-visit destinations and activities.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?village" alt="Historic Village Center" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Historic Village Center</h3>
+                    <p>Explore charming cobblestone streets, traditional architecture, and local artisan shops in the nearby historic village center, just 15 minutes away.</p>
+                    <p class="text-sm">Distance: 8 km | Duration: 15 minutes</p>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?nature" alt="Nature Reserve & Hiking Trails" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Nature Reserve & Hiking Trails</h3>
+                    <p>Discover pristine hiking trails through protected woodlands with guided tours, bird watching, and panoramic viewpoints of the valley.</p>
+                    <p class="text-sm">Distance: 5 km | Duration: 10 minutes</p>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?vineyard" alt="Local Winery & Vineyards" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Local Winery & Vineyards</h3>
+                    <p>Experience wine tasting sessions at award-winning local vineyards, featuring tours of the cellars and traditional wine-making processes.</p>
+                    <p class="text-sm">Distance: 12 km | Duration: 20 minutes</p>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/400x300/?adventure" alt="Adventure Sports Center" class="mb-4 rounded">
+                    <h3 class="text-xl font-semibold mb-2">Adventure Sports Center</h3>
+                    <p>Thrilling activities including zip-lining, rock climbing, mountain biking, and paragliding with professional instructors and safety equipment.</p>
+                    <p class="text-sm">Distance: 18 km | Duration: 25 minutes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="section">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">Reserve Your Stay</h2>
+            <p class="text-lg text-center mb-8">Book directly with us for the best rates and exclusive perks. Our team is ready to make your stay unforgettable.</p>
+            <div class="card max-w-lg mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="check-in" class="block mb-1">Check-in Date</label>
+                        <input type="date" id="check-in" class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label for="check-out" class="block mb-1">Check-out Date</label>
+                        <input type="date" id="check-out" class="w-full p-2 border rounded">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="guests" class="block mb-1">Number of Guests</label>
+                        <select id="guests" class="w-full p-2 border rounded">
+                            <option>1 Guest</option>
+                            <option>2 Guests</option>
+                            <option>3 Guests</option>
+                            <option>4 Guests</option>
+                            <option>5+ Guests</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="room-type" class="block mb-1">Room Type</label>
+                        <select id="room-type" class="w-full p-2 border rounded">
+                            <option>Standard Room - $179/night</option>
+                            <option>Deluxe Suite - $299/night</option>
+                            <option>Premium Villa - $599/night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="package" class="block mb-1">Special Package</label>
+                    <select id="package" class="w-full p-2 border rounded">
+                        <option>No package</option>
+                        <option>Romantic Getaway (+$150)</option>
+                        <option>Spa Retreat (+$200)</option>
+                        <option>Adventure Package (+$180)</option>
+                        <option>Business Traveler (+$100)</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="promo" class="block mb-1">Promo Code</label>
+                    <input type="text" id="promo" class="w-full p-2 border rounded" placeholder="Enter promo code">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="name" class="block mb-1">Full Name</label>
+                        <input type="text" id="name" class="w-full p-2 border rounded" placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-1">Email Address</label>
+                        <input type="email" id="email" class="w-full p-2 border rounded" placeholder="Enter your email">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block mb-1">Phone Number</label>
+                    <input type="tel" id="phone" class="w-full p-2 border rounded" placeholder="Enter your phone number">
+                </div>
+                <div class="card mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Booking Summary</h3>
+                    <p id="summary">Please fill out the form to see your booking summary.</p>
+                </div>
+                <button onclick="calculateSummary()" class="btn w-full">Complete Reservation</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="section bg-gray-900 text-white">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                <p>123 Scenic Valley Road, Moldova</p>
+                <p>+373 22 123 456</p>
+                <p>info@grandvistahotel.com</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                <ul class="list-none">
+                    <li><a href="#rooms" class="text-gray-300 hover:text-white">Accommodations</a></li>
+                    <li><a href="#amenities" class="text-gray-300 hover:text-white">Amenities</a></li>
+                    <li><a href="#attractions" class="text-gray-300 hover:text-white">Local Attractions</a></li>
+                    <li><a href="#booking" class="text-gray-300 hover:text-white">Reservations</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-300 hover:text-white">Facebook</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Twitter</a>
+                    <a href="#" class="text-gray-300 hover:text-white">Instagram</a>
+                    <a href="#" class="text-gray-300 hover:text-white">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <p>© 2025 Grand Vista Hotel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Pannellum 360° Virtual Tour
+        let viewer;
+        function initializePanorama() {
+            viewer = pannellum.viewer('panorama', {
+                "type": "equirectangular",
+                "panorama": "IMG-20250929-WA0013.jpg",
+                "autoLoad": true,
+                "autoRotate": -2,
+                "title": "Deluxe Suite - Virtual Tour",
+                "author": "Grand Vista Hotel",
+                "showControls": true,
+                "hfov": 110,
+                "compass": false,
+                "showFullscreenCtrl": true,
+                "showZoomCtrl": true
+            });
+        }
+
+        function loadTour(image, title) {
+            if (viewer) {
+                viewer.destroy();
+            }
+            viewer = pannellum.viewer('panorama', {
+                "type": "equirectangular",
+                "panorama": image,
+                "autoLoad": true,
+                "autoRotate": -2,
+                "title": title + " - Virtual Tour",
+                "author": "Grand Vista Hotel",
+                "showControls": true,
+                "hfov": 110,
+                "compass": false,
+                "showFullscreenCtrl": true,
+                "showZoomCtrl": true
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initializePanorama, 500);
+        });
+
+        // Booking summary function (unchanged)
+        function calculateSummary() {
+            const checkIn = document.getElementById('check-in').value;
+            const checkOut = document.getElementById('check-out').value;
+            const guests = document.getElementById('guests').value;
+            const roomType = document.getElementById('room-type').value;
+            const package = document.getElementById('package').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            let price = 0;
+            if (roomType.includes('Standard Room')) price += 179;
+            else if (roomType.includes('Deluxe Suite')) price += 299;
+            else if (roomType.includes('Premium Villa')) price += 599;
+
+            if (package.includes('Romantic Getaway')) price += 150;
+            else if (package.includes('Spa Retreat')) price += 200;
+            else if (package.includes('Adventure Package')) price += 180;
+            else if (package.includes('Business Traveler')) price += 100;
+
+            const summary = `
+                Name: ${name || 'Not provided'}<br>
+                Email: ${email || 'Not provided'}<br>
+                Phone: ${phone || 'Not provided'}<br>
+                Check-in: ${checkIn || 'Not selected'}<br>
+                Check-out: ${checkOut || 'Not selected'}<br>
+                Guests: ${guests}<br>
+                Room Type: ${roomType}<br>
+                Package: ${package}<br>
+                Total Price per Night: $${price}
+            `;
+            document.getElementById('summary').innerHTML = summary;
+            alert('Booking submitted! Check the summary below.');
+        }
+    </script>
+    <script src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
+    </script>
